@@ -1,0 +1,55 @@
+<!--
+    Author: Hilal Cubukcu
+    Title: Registration Page
+    Last modified on: 07.06.2024
+    Summary: This file represents the sign-up page for Steam. It includes a form for user registration and JavaScript for handling the sign-up process.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up to Steam</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body class="register_login">
+    <h1>Sign up to Steam<sup class="tm">TM</sup></h1>
+    <form id="registerForm">
+        <p id="error" class="error"></p>
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Name">
+        <label>E-Mail Address</label>
+        <input type="email" id="email" placeholder="E-Mail Address">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="Password">
+        <p class="register-link">Already Signed Up? <a href="{{ url_for('index') }}">Click here to Log In.</a></p>
+        <button type="submit">Sign Up</button>
+    </form>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, email: email, password: password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('error').innerText = data.error;
+                } else {
+                    window.location.href = '/dashboard';
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

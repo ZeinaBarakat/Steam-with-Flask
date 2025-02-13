@@ -1,0 +1,47 @@
+<!--
+    Author: Yudum Yilmaz
+    Title: Search Results Page
+    Last modified on: 20.06.2024
+    Summary: This file represents the search results page for Steam. It includes the display of search results with information such as title, genre, platform, year, seasons, and rating. We no longer include the series from the default library, only personally added series are displayed.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='dashboardStyle.css') }}"> -->
+    <style>
+        .search-result {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-results-container">
+        {% for series in series %}
+            <div class="search-result">
+                <h3>{{ series.title }}</h3>
+                <p>{{ series.genre }}</p>
+                <p>{{ series.platform }}</p>
+                <p>{{ series.year }}</p>
+                <p>{{ series.seasons }} seasons</p>
+                <img src="data:image/jpeg;base64,{{ series.picture }}" alt="{{ series.title }} poster">
+                <p>Rating: {{ series.rating }}</p>
+                <div class="rating">
+                    {% for i in range(1, 6) %}
+                        {% if i <= series.rating %}
+                            <span class="star filled">&#9733;</span>
+                        {% else %}
+                            <span class="star">&#9733;</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
