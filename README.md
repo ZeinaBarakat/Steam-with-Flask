@@ -40,8 +40,8 @@ Steam^tm is a web application designed to help users track their watched series.
 - Type http://127.0.0.1:5000 in the browsertab.
 
 ## Contributors: Gruppe 09
-- **Barakat, Zeinab, 1714983:** Dashboard, AddSeries, DeleteSeries
-- **Cubukcu, Hilal, 1715678:** Database, Login, Registration
-- **Rosic Emira, Melisa, 1715377:** Profile
-- **Yilmaz, Yudum, 1715539:** Dashboard, Search Page
+- **Barakat, Zeinab:** Dashboard, AddSeries, DeleteSeries
+- **Cubukcu, Hilal:** Database, Login, Registration
+- **Rosic Emira, Melisa:** Profile
+- **Yilmaz, Yudum:** Dashboard, Search Page
 - **Everyone:** Design
